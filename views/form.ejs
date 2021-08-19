@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('header', {title: "Submit a bird Sighting"}) %>
+  <body>
+    <main class="my-form">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card-header">Submit your bird Sighting</div>
+            <div class="card justify-content-center align-items-center">
+              <div class="card-body"><form action="/note"
+        name="form"
+        method="POST">                               <div class="form-group row">
+                                    <label for="habitat" class="col-md-4 col-form-label text-md-right">Habitat</label>
+                                    <div class="col-md-6">
+                                        <textarea id="habitat" name="habitat" class = "form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                                                <div class="form-group row">
+                                    <label for="date_time" class="col-md-4 col-form-label text-md-right">Date and Time</label>
+                                    <div class="col-md-6">
+                                        <input  type="datetime-local"
+          id="date_time"
+          name="date_time" class = "form-control">
+                                    </div>
+                                </div>
+                                                               <div class="form-group row">
+                                    <label for="appearance" class="col-md-4 col-form-label text-md-right">Appearance</label>
+                                    <div class="col-md-6">
+                                        <textarea id="appearance" name="appearance" class = "form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group row">
+                                    <label for="behaviour" class="col-md-4 col-form-label text-md-right">Behaviour</label>
+                                    <div class="col-md-6">
+                                        <textarea id="behaviour" name="behaviour" class = "form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                 <div class="form-group row">
+                                    <label for="vocalisations" class="col-md-4 col-form-label text-md-right">Vocalisations</label>
+                                    <div class="col-md-6">
+                                        <textarea id="vocalisations" name="vocalisations" class = "form-control"></textarea>
+                                    </div>
+                                </div>
+                                 <div class="form-group row">
+                                    <label for="flock_size" class="col-md-4 col-form-label text-md-right">Flock Size</label>
+                                    <div class="col-md-6">
+                                        <input type="number"
+          id="flock_size"
+          name="flock_size"
+          min="1"
+          max="100" class="form-control">
+                                    </div>
+                                </div>
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary" value="Submit">
+                                        Submit
+                                        </button>
+                                    </div>
+                                
+                                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
