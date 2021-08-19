@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include ('header', {title: "Submit a bird Sighting"}) %>
+  <%- include ('header', {title: "Edit a bird Sighting"}) %>
   <body>
     <main class="my-form">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <div class="card-header">Submit your bird Sighting</div>
+            <div class="card-header">Edit your bird Sighting</div>
             <div class="card justify-content-center align-items-center">
-              <div class="card-body"><form action="/note"
+              <div class="card-body"><form action="/note/<%= id %>/edit?_method=PUT"
         name="form"
         method="POST">                               <div class="form-group row">
                                     <label for="habitat" class="col-md-4 col-form-label text-md-right">Habitat</label>
                                     <div class="col-md-6">
-                                        <textarea id="habitat" name="habitat" class = "form-control"></textarea>
+                                        <textarea id="habitat" name="habitat" class = "form-control"><%=habitat%></textarea>
                                     </div>
                                 </div>
 
                                                                 <div class="form-group row">
-                                    <label for="date_time" class="col-md-4 col-form-label text-md-right">Date</label>
+                                    <label for="date_time" class="col-md-4 col-form-label text-md-right">Date and Time</label>
                                     <div class="col-md-6">
                                         <input  type="date"
           id="date_time"
-          name="date_time" class = "form-control">
+          name="date_time" class = "form-control" value="<%=date%>">
                                     </div>
                                 </div>
                                                                <div class="form-group row">
                                     <label for="appearance" class="col-md-4 col-form-label text-md-right">Appearance</label>
                                     <div class="col-md-6">
-                                        <textarea id="appearance" name="appearance" class = "form-control"></textarea>
+                                        <textarea id="appearance" name="appearance" class = "form-control"><%=appearance%></textarea>
                                     </div>
                                 </div>
 
                                  <div class="form-group row">
                                     <label for="behaviour" class="col-md-4 col-form-label text-md-right">Behaviour</label>
                                     <div class="col-md-6">
-                                        <textarea id="behaviour" name="behaviour" class = "form-control"></textarea>
+                                        <textarea id="behaviour" name="behaviour" class = "form-control"><%= behaviour%></textarea>
                                     </div>
                                 </div>
 
                                  <div class="form-group row">
                                     <label for="vocalisations" class="col-md-4 col-form-label text-md-right">Vocalisations</label>
                                     <div class="col-md-6">
-                                        <textarea id="vocalisations" name="vocalisations" class = "form-control"></textarea>
+                                        <textarea id="vocalisations" name="vocalisations" class = "form-control"><%= vocalisations%></textarea>
                                     </div>
                                 </div>
                                  <div class="form-group row">
@@ -52,7 +52,7 @@
           id="flock_size"
           name="flock_size"
           min="1"
-          max="100" class="form-control">
+          max="100" class="form-control" value = "<%= flock_size%>">
                                     </div>
                                 </div>
                                     <div class="col-md-8 offset-md-4">

@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import express from 'express';
 import pg from 'pg';
-// import {
-//   read, add, write, edit, deleteFunc,
-// } from './jsonFileStorage.mjs';
+import methodOverride from 'method-override';
 
 const { Client } = pg;
 
@@ -26,6 +24,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 const PORT = 3004;
 
 const whenQueryDone = (error, result) => {
@@ -67,7 +66,6 @@ const handlePostForm = (request, response) => {
 
 const handleGetNote = (request, response) => {
   const { index } = request.params;
-  console.log(index);
   const formQuery = `SELECT * FROM birds WHERE id = ${index}`;
   pool.query(formQuery, (error, result) => {
     if (error) {
@@ -75,8 +73,23 @@ const handleGetNote = (request, response) => {
     } else {
     // rows key has the data
       const obj = result.rows[0];
-      console.log(obj);
+      console.log(request.params);
       response.render('note', obj);
+    }
+  });
+};
+
+// find a way to combine this with above
+const handleEditNote = (request, response) => {
+  const { index } = request.params;
+  const formQuery = `SELECT * FROM birds WHERE id = ${index}`;
+  pool.query(formQuery, (error, result) => {
+    if (error) {
+      console.log('error', error);
+    } else {
+    // rows key has the data
+      const obj = result.rows[0];
+      response.render('edit', obj);
     }
   });
 };
@@ -85,6 +98,16 @@ app.get('/note', handleGetForm);
 app.post('/note', handlePostForm);
 app.get('/', handleIndex);
 app.get('/note/:index', handleGetNote);
+app.get('/note/:index/edit', handleEditNote);
+app.put('/note/:index/edit', (request, response) => {
+  const { index } = request.params;
+  console.log(index);
+  const formRawData = request.body;
+  console.log(request.body);
+  const formQuery = `UPDATE birds SET habitat = '${formRawData.habitat}', date = '${formRawData.date_time}', appearance = '${formRawData.appearance}', behaviour = '${formRawData.behaviour}', vocalisations = '${formRawData.vocalisations}', flock_size = '${formRawData.flock_size}' WHERE id = '${index}'`;
+  pool.query(formQuery, whenQueryDone);
+  response.redirect(`/note/${index}`);
+});
 app.listen(PORT);
 
 // CREATE TABLE birds (id SERIAL PRIMARY KEY, habitat TEXT, date TEXT, appearance TEXT, behaviour TEXT, vocalisations TEXT, flock_size INTEGER);
