@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include ('header', {title: "Bird Sightings"}) %>
+  <%- include ('header', {title: "Single Behaviour"}) %>
   <body>
     <div class="container">
       <div class="row">
@@ -9,10 +9,10 @@
             <div class="panel-heading">
               <div class="row">
                 <div class="col col-xs-6">
-                  <h3 class="panel-title">Bird Sighting</h3>
+                  <h3 class="panel-title">Sightings with this behaviour</h3>
                 </div>
                 <div class="col col-xs-6 text-right">
-                  <form action = "/note" method="GET">
+                  <form action = "" method="GET">
                   <input
                     type="submit"
                     class="btn btn-sm btn-primary btn-create"
@@ -38,22 +38,15 @@
                 <thead>
                   <tr align="center">
                     <th>Settings</th>
-                    <th>Report No.</th>
-                    <th>Habitat</th>
-                    <th>Date</th>
-                    <th>Appearance</th>
-                    <th>Behaviour</th>
-                    <th>Vocalisations</th>
-                    <th>Flock Size</th>
-                    <th>Created By</th>
-                    <th>Species</th>
+                    <th>Sighting ID</th>
+                    <th>Name of bird</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% notes.forEach ((note) => { %>
+                  <% for (let i = 0; i <birdNameResults.length; i+=1) {%>
                   <tr align="center">
                     <td>
-                      <form action="/note/<%= note.id %>/edit" method="GET">
+                      <form action="" method="GET">
                         <input
                           type="submit"
                           class="btn btn-primary"
@@ -61,7 +54,7 @@
                         />
                       </form>
                       <form
-                        action="/note/<%= note.id %>?_method=DELETE"
+                        action="?_method=DELETE"
                         method="POST"
                       >
                         <input
@@ -72,19 +65,11 @@
                       </form>
                     </td>
                     <td class="hidden-xs">
-                      <a href="/note/<%=note.id%>"> <%=note.id%> </a>
+                      <a href="/note/<%=birdIDResults[i].bird_id%>"> <%=birdIDResults[i].bird_id%> </a>
                     </td>
-
-                    <td><%= note.habitat%></td>
-                    <td><%= note.date%></td>
-                    <td><%= note.appearance%></td>
-                    <td><%= note.behaviour%></td>
-                    <td><%= note.vocalisations%></td>
-                    <td><%= note.flock_size%></td>
-                    <td><%= note.created_by%></td>
-                    <td><%= note.species%></td>
+                    <td><%= birdNameResults[i]%></td>
                   </tr>
-                  <% }) %>
+                  <% } %>
                 </tbody>
               </table>
             </div>

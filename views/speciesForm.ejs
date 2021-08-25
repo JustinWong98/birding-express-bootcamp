@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('header', {title: "Submit a species!"}) %>
+  <body>
+    <main class="my-form">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="card-header">Submit a new species!</div>
+            <div class="card justify-content-center align-items-center">
+              <div class="card-body"><form action="/species"
+        name="form"
+        method="POST">                               <div class="form-group row">
+                                    <label for="species" class="col-md-4 col-form-label text-md-right">Species</label>
+                                    <div class="col-md-6">
+                                        <input type= 'text' id="species" name="species" class = "form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="scientific_name" class="col-md-4 col-form-label text-md-right">Scientific Name</label>
+                                    <div class="col-md-6">
+                                        <input type= 'text' id="scientific_name" name="scientific_name" class = "form-control">
+                                    </div>
+                                </div>
+
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary" onclick = "return check()" value="Submit">
+                                        Submit
+                                        </button>
+                                    </div>
+                                
+                                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="ejs.min.js"></script>
+    <script>
+      const check = function () {
+         const name = document.forms['form'].species.value;
+  const scientificName = document.forms['form'].scientific_name.value;
+      if (name === null || name === '' || scientificName === null || scientificName === '') {
+      alert ('Please fill out both fields!')
+      return false;
+    }
+'<% species.forEach((species) => { %>'
+    if (name === '<%= species.name %>' || scientificName === '<%= species.scientific_name %>') {
+      alert ('Apologies, but this species or its scientific name is already in the database.')
+      return false;
+    }
+ '<% }) %>'
+      }
+    </script>
+  </body>
+</html>

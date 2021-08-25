@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include ('header', {title: "Bird Sightings"}) %>
+  <%- include ('header', {title: "Bird Sightings By User"}) %>
   <body>
     <div class="container">
       <div class="row">
@@ -45,8 +45,6 @@
                     <th>Behaviour</th>
                     <th>Vocalisations</th>
                     <th>Flock Size</th>
-                    <th>Created By</th>
-                    <th>Species</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -81,8 +79,6 @@
                     <td><%= note.behaviour%></td>
                     <td><%= note.vocalisations%></td>
                     <td><%= note.flock_size%></td>
-                    <td><%= note.created_by%></td>
-                    <td><%= note.species%></td>
                   </tr>
                   <% }) %>
                 </tbody>

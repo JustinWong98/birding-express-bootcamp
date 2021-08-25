@@ -55,6 +55,25 @@
           max="100" class="form-control">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="species" class="col-md-4 col-form-label text-md-right">Species</label>
+                                    <div class="col-md-6">
+                                        <select id="species" name="species" class="form-control">
+                                          <% species.forEach((species) => { %>
+                                            <option value = "<%=species.name%>"><%=species.name%></option>
+                                          <% }) %>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="behaviourChecklist" class="col-md-4 col-form-label text-md-right">Behaviour Checklist</label>
+                                    <div class="col-md-6">
+                                          <% behaviour.forEach((behaviour) => { %>
+                                            <label><%= behaviour.name %></label>
+                                            <input type = 'checkbox' name = "behaviourChecklist" value = "<%=behaviour.id%>">
+                                          <% }) %>
+                                    </div>
+                                </div>
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary" value="Submit">
                                         Submit
